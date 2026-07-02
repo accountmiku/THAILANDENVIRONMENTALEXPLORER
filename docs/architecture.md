@@ -6,7 +6,7 @@ Explain how the system is organised.
 
 ## Main Components
 
-A static dark-dashboard browser application with separate files for page structure, styling, interactions, and sample data.
+A static map-first AI product interface with separate files for page structure, styling, interactions, and sample data. The map occupies the primary desktop workspace, while layers float over it and AI insights provide supporting context.
 
 ## File Structure
 
@@ -26,4 +26,4 @@ No storage is used.
 
 ## External Libraries
 
-No external libraries are used.
+The interface loads the Prompt font from Google Fonts. Tahoma is the local fallback when the font service is unavailable. No JavaScript libraries are used.

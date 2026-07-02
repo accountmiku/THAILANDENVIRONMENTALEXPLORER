@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NatureLens AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -36,8 +39,13 @@
         <section id="map-view" class="view active-view">
           <div class="map-panel">
             <div class="map-heading">
-              <div><p class="kicker">THAILAND ENVIRONMENTAL EXPLORER</p><h1 data-th="สำรวจภาพรวมธรรมชาติ" data-en="Explore nature insights">สำรวจภาพรวมธรรมชาติ</h1></div>
-              <span id="map-status">เลือกพื้นที่บนแผนที่</span>
+              <div class="hero-copy">
+                <p class="kicker">NATURE INTELLIGENCE · THAILAND</p>
+                <h1 data-th="มองธรรมชาติให้ชัด ก่อนลงมือเปลี่ยนแปลง" data-en="See nature clearly before creating change">มองธรรมชาติให้ชัด ก่อนลงมือเปลี่ยนแปลง</h1>
+                <p class="hero-mission" data-th="NatureLens AI เปลี่ยนข้อมูลสิ่งแวดล้อมที่ซับซ้อน ให้เป็นเรื่องราวและแนวทางฟื้นฟูที่ทุกคนเข้าใจได้" data-en="NatureLens AI turns complex environmental data into clear stories and practical restoration pathways.">NatureLens AI เปลี่ยนข้อมูลสิ่งแวดล้อมที่ซับซ้อน ให้เป็นเรื่องราวและแนวทางฟื้นฟูที่ทุกคนเข้าใจได้</p>
+                <div class="hero-tags"><span>AI-guided</span><span>Nature-first</span><span>Explainable</span></div>
+              </div>
+              <div class="hero-status"><span class="pulse-orb">AI</span><span id="map-status">เลือกพื้นที่บนแผนที่</span></div>
             </div>
             <div class="map-stage">
               <div class="map-canvas">
@@ -53,20 +61,19 @@
               <div class="map-legend"><span><i class="green"></i> Nature opportunity</span><span><i class="amber"></i> Human pressure</span></div>
               </div>
             </div>
+            <aside class="layers-panel glass-card">
+              <div class="panel-title"><p class="kicker">EXPLORE SIGNALS</p><h2 data-th="ชั้นข้อมูลธรรมชาติ" data-en="Nature layers">ชั้นข้อมูลธรรมชาติ</h2></div>
+              <div class="layer-list">
+                <label><span><i class="swatch forest"></i>Forest cover</span><input type="checkbox" data-layer="forest" checked></label>
+                <label><span><i class="swatch protected"></i>Protected areas</span><input type="checkbox" data-layer="protected"></label>
+                <label><span><i class="swatch biodiversity"></i>Biodiversity records</span><input type="checkbox" data-layer="biodiversity"></label>
+                <label><span><i class="swatch roads"></i>Roads & settlements</span><input type="checkbox" data-layer="roads"></label>
+                <label><span><i class="swatch change"></i>Change detection</span><input type="checkbox" data-layer="change"></label>
+              </div>
+              <div class="selected-summary" id="selected-summary"><span>⌖</span><p data-th="เลือกหมุดเพื่อดู AI Insight" data-en="Select a marker for AI Insight">เลือกหมุดเพื่อดู AI Insight</p></div>
+            </aside>
             <div class="map-disclaimer">ภาพประกอบและค่าทั้งหมดเป็นข้อมูลจำลอง ไม่ใช่ขอบเขตหรือผลวิเคราะห์ทางราชการ</div>
           </div>
-
-          <aside class="layers-panel">
-            <p class="kicker">MAP LAYERS</p><h2 data-th="ชั้นข้อมูล" data-en="Data layers">ชั้นข้อมูล</h2>
-            <div class="layer-list">
-              <label><span><i class="swatch forest"></i>Forest cover</span><input type="checkbox" data-layer="forest" checked></label>
-              <label><span><i class="swatch protected"></i>Protected areas</span><input type="checkbox" data-layer="protected"></label>
-              <label><span><i class="swatch biodiversity"></i>Biodiversity records</span><input type="checkbox" data-layer="biodiversity"></label>
-              <label><span><i class="swatch roads"></i>Roads & settlements</span><input type="checkbox" data-layer="roads"></label>
-              <label><span><i class="swatch change"></i>Change detection</span><input type="checkbox" data-layer="change"></label>
-            </div>
-            <div class="selected-summary" id="selected-summary"><span>⌖</span><p data-th="เลือกหมุดเพื่อดู AI Insight" data-en="Select a marker for AI Insight">เลือกหมุดเพื่อดู AI Insight</p></div>
-          </aside>
 
           <aside class="insight-panel" aria-live="polite">
             <div id="insight-empty"><div class="ai-orb">AI</div><h2>AI Insight</h2><p>เลือกพื้นที่เพื่อดู Nature Profile และคำอธิบาย</p></div>
