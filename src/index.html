@@ -12,12 +12,13 @@
 <body>
   <div class="dashboard-shell">
     <aside class="sidebar">
-      <a class="brand" href="#map-view" aria-label="NatureLens AI home"><span>NL</span><strong>NatureLens<em>AI</em></strong></a>
+      <a class="brand" href="#map-view" aria-label="NatureLens AI home"><span>NL</span><div><strong>NatureLens <em>AI</em></strong><small>Environmental Insight Platform</small></div></a>
       <nav aria-label="เมนูหลัก">
         <button class="nav-item active" data-view="map-view"><span>⌖</span><b data-th="สำรวจแผนที่" data-en="Explore Map">สำรวจแผนที่</b></button>
         <button class="nav-item" data-view="compare-view"><span>⇄</span><b data-th="เปรียบเทียบ" data-en="Compare">เปรียบเทียบ</b></button>
         <button class="nav-item" data-view="change-view"><span>◫</span><b data-th="การเปลี่ยนแปลง" data-en="Change">การเปลี่ยนแปลง</b></button>
       </nav>
+      <div class="sidebar-story"><b>NatureLens AI</b><p>รวมข้อมูลสิ่งแวดล้อมและ AI เพื่อสนับสนุนการอนุรักษ์และฟื้นฟูธรรมชาติของประเทศไทย</p><span>Prototype data →</span></div>
       <div class="sidebar-footer">
         <span class="live-dot"></span><small data-th="ต้นแบบออนไลน์" data-en="Prototype online">ต้นแบบออนไลน์</small>
         <button id="language-toggle" aria-label="Change language">TH / EN</button>
@@ -32,6 +33,7 @@
           <input id="area-search" list="area-options" placeholder="ค้นหาจังหวัดหรือพื้นที่..." aria-label="ค้นหาพื้นที่">
           <datalist id="area-options"><option value="เชียงใหม่"><option value="นครนายก"><option value="กระบี่"></datalist>
         </div>
+        <time id="local-clock" aria-label="วันและเวลาประเทศไทย"></time>
         <div class="top-actions"><span class="data-state">● ข้อมูลจำลอง</span><button id="export-button">⇩ Export report</button></div>
       </header>
 
@@ -79,6 +81,15 @@
             <div id="insight-empty"><div class="ai-orb">AI</div><h2>AI Insight</h2><p>เลือกพื้นที่เพื่อดู Nature Profile และคำอธิบาย</p></div>
             <div id="insight-content" hidden></div>
           </aside>
+
+          <section class="kpi-strip" aria-label="สรุปตัวชี้วัดพื้นที่">
+            <article><span class="kpi-icon">♣</span><small>พื้นที่ป่าไม้</small><strong id="kpi-forest">–</strong><p>ของพื้นที่ตัวอย่าง</p><i></i></article>
+            <article><span class="kpi-icon">⛓</span><small>ความเชื่อมโยง</small><strong id="kpi-connectivity">–</strong><p>ระบบนิเวศ</p><i></i></article>
+            <article><span class="kpi-icon">✾</span><small>ความหลากหลาย</small><strong id="kpi-biodiversity">–</strong><p>ดัชนีชนิดพันธุ์</p><i></i></article>
+            <article><span class="kpi-icon">♟</span><small>การรบกวน</small><strong id="kpi-disturbance">–</strong><p>แรงกดดันมนุษย์</p><i></i></article>
+            <article><span class="kpi-icon">↗</span><small>การเปลี่ยนแปลง</small><strong id="kpi-change">–</strong><p>ข้อมูลย้อนหลัง</p><i></i></article>
+            <article class="report-kpi"><span class="kpi-icon">▤</span><small>รายงานสรุป</small><strong>ดาวน์โหลด</strong><button id="kpi-export">TXT →</button></article>
+          </section>
         </section>
 
         <section id="compare-view" class="view">
@@ -94,6 +105,6 @@
       </main>
     </div>
   </div>
-  <script type="module" src="app.js"></script>
+  <script type="module" src="app.js?v=2"></script>
 </body>
 </html>

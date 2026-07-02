@@ -8,6 +8,12 @@ export const areas = {
       { year: "2568", nature: 81 },
       { year: "2569", nature: 78 }
     ],
+    species: [
+      { name: "ช้างเอเชีย", category: "สัตว์เลี้ยงลูกด้วยนม", icon: "🐘" },
+      { name: "นกไต่ไม้ใหญ่", category: "นก", icon: "🐦" },
+      { name: "เลียงผา", category: "สัตว์เลี้ยงลูกด้วยนม", icon: "🐐" },
+      { name: "กุหลาบพันปี", category: "พืช", icon: "🌿" }
+    ],
     restorationSteps: [
       "เชื่อมผืนป่าบนพื้นที่ลาดชันด้วยไม้ท้องถิ่นหลายระดับเรือนยอด",
       "ฟื้นแนวกันชนริมลำห้วยเพื่อลดตะกอนจากพื้นที่เกษตร",
@@ -29,6 +35,12 @@ export const areas = {
       { year: "2568", nature: 68 },
       { year: "2569", nature: 67 }
     ],
+    species: [
+      { name: "ช้างเอเชีย", category: "สัตว์เลี้ยงลูกด้วยนม", icon: "🐘" },
+      { name: "นกเงือกกรามช้าง", category: "นก", icon: "🐦" },
+      { name: "ไก่ฟ้าพญาลอ", category: "นก", icon: "🪶" },
+      { name: "ยางนา", category: "พืช", icon: "🌳" }
+    ],
     restorationSteps: [
       "สร้างแนวกันชนรอบพื้นที่เกษตรที่ติดป่าและแหล่งน้ำ",
       "ปลูกไม้ท้องถิ่นในจุดขาดตอนเพื่อเชื่อมพื้นที่เขาใหญ่",
@@ -49,6 +61,13 @@ export const areas = {
       { year: "2567", nature: 80 },
       { year: "2568", nature: 82 },
       { year: "2569", nature: 84 }
+    ],
+    species: [
+      { name: "พะยูน", category: "สัตว์ทะเล", icon: "🐋" },
+      { name: "นากใหญ่ขนเรียบ", category: "สัตว์เลี้ยงลูกด้วยนม", icon: "🦦" },
+      { name: "นกแต้วแล้วป่าโกงกาง", category: "นก", icon: "🐦" },
+      { name: "โกงกางใบใหญ่", category: "พืชชายเลน", icon: "🌱" },
+      { name: "ปูก้ามดาบ", category: "สัตว์หน้าดิน", icon: "🦀" }
     ],
     restorationSteps: [
       "ฟื้นป่าชายเลนตามระดับน้ำขึ้นลงและชนิดดินของแต่ละแปลง",

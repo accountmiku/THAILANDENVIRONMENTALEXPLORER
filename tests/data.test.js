@@ -45,3 +45,11 @@ test("all areas include specific restoration guidance", () => {
     assert.ok(area.restorationSteps.every((step) => step.length > 0));
   }
 });
+
+test("all areas include categorized example species", () => {
+  for (const area of Object.values(areas)) {
+    assert.ok(area.species.length >= 4);
+    assert.ok(new Set(area.species.map((species) => species.category)).size >= 2);
+    assert.ok(area.species.every((species) => species.name && species.icon));
+  }
+});

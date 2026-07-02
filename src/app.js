@@ -1,4 +1,4 @@
-import { areas, getArea } from "./data.js";
+import { areas, getArea } from "./data.js?v=2";
 
 const insightEmpty = document.querySelector("#insight-empty");
 const insightContent = document.querySelector("#insight-content");
@@ -21,6 +21,23 @@ function historyChart(history) {
   return `<section class="history-card"><div class="section-title"><h3>ข้อมูลย้อนหลัง 3 ปี</h3><small>ดัชนีธรรมชาติจำลอง (0–100)</small></div><svg class="history-chart" viewBox="0 0 300 120" role="img" aria-label="กราฟดัชนีธรรมชาติย้อนหลัง 3 ปี"><line x1="18" y1="102" x2="282" y2="102"></line><polyline points="${points.map((point) => `${point.x},${point.y}`).join(" ")}"></polyline>${points.map((point) => `<circle cx="${point.x}" cy="${point.y}" r="4"></circle><text x="${point.x}" y="${point.y - 10}" text-anchor="middle">${point.nature}</text><text x="${point.x}" y="116" text-anchor="middle">${point.year}</text>`).join("")}</svg></section>`;
 }
 
+function speciesCard(species) {
+  return `<section class="species-card"><div class="section-title"><h3>สิ่งมีชีวิตตัวอย่างในพื้นที่</h3><small>ข้อมูลต้นแบบ</small></div><div class="species-grid">${species.map((item) => `<div><span>${item.icon}</span><p><b>${item.name}</b><small>${item.category}</small></p></div>`).join("")}</div><p class="species-note">รายชื่อเพื่อสาธิตหน้าจอ ควรตรวจสอบกับฐานข้อมูลสำรวจจริงก่อนนำไปใช้</p></section>`;
+}
+
+function updateClock() {
+  const now = new Date();
+  document.querySelector("#local-clock").innerHTML = `<b>${new Intl.DateTimeFormat("th-TH", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Bangkok" }).format(now)}</b><span>${new Intl.DateTimeFormat("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, timeZone: "Asia/Bangkok" }).format(now)} น.</span>`;
+}
+
+function updateKpis(area) {
+  document.querySelector("#kpi-forest").textContent = `${area.forest}%`;
+  document.querySelector("#kpi-connectivity").textContent = area.connectivity >= 70 ? "สูง" : "ปานกลาง";
+  document.querySelector("#kpi-biodiversity").textContent = area.biodiversity;
+  document.querySelector("#kpi-disturbance").textContent = area.disturbance <= 40 ? "ต่ำ" : "ปานกลาง";
+  document.querySelector("#kpi-change").textContent = `${area.change > 0 ? "+" : ""}${area.change}%`;
+}
+
 function showArea(areaId) {
   const area = getArea(areaId);
   if (!area) return;
@@ -30,11 +47,13 @@ function showArea(areaId) {
   insightContent.hidden = false;
   mapStatus.textContent = `● ${area.name}`;
   selectedSummary.innerHTML = `<span class="summary-score">${area.score}</span><div><b>${area.name}</b><small>Nature Opportunity Score</small></div>`;
+  updateKpis(area);
   insightContent.innerHTML = `
     <div class="insight-head"><div><p class="kicker">AI INSIGHT PANEL</p><h2>${currentLanguage === "th" ? area.name : area.nameEn}</h2><small>${area.ecosystem}</small></div><div class="score-ring"><b>${area.score}</b><span>/100</span></div></div>
     <div class="opportunity-label">ศักยภาพ${area.level}<span>ข้อมูลจำลอง</span></div>
     <section class="ai-explanation"><div class="ai-mini">AI</div><p>${area.insight}</p></section>
     <section class="profile"><h3>Nature Profile</h3>${profileRow("Forest cover", area.forest)}${profileRow("Connectivity", area.connectivity)}${profileRow("Biodiversity", area.biodiversity)}${profileRow("Low disturbance", area.disturbance, true)}</section>
+    ${speciesCard(area.species)}
     ${historyChart(area.history)}
     <div class="metric-grid"><div><span>Nearby protected area</span><b>${area.protectedArea}</b></div><div><span>Nature change</span><b class="${area.change >= 0 ? "positive" : "negative"}">${area.change > 0 ? "+" : ""}${area.change}%</b></div></div>
     <section class="action-card"><span>แนวทางที่น่าสำรวจ</span><strong>${area.recommendation}</strong><small>${area.caution}</small></section>
@@ -107,4 +126,8 @@ document.querySelector("#language-toggle").addEventListener("click", () => {
   if (selectedAreaId) showArea(selectedAreaId);
 });
 document.querySelector("#export-button").addEventListener("click", exportReport);
+document.querySelector("#kpi-export").addEventListener("click", exportReport);
 document.querySelector(".mobile-menu").addEventListener("click", () => document.querySelector(".sidebar").classList.toggle("open"));
+updateClock();
+setInterval(updateClock, 1000);
+showArea("krabi");
