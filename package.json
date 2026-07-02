@@ -1,0 +1,10 @@
+{
+  "name": "nature-opportunity-thailand",
+  "version": "0.1.0",
+  "description": "A frontend prototype for exploring nature conservation and restoration opportunities in Thailand.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

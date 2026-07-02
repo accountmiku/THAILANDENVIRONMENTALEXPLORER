@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NatureLens AI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#map-view" aria-label="NatureLens AI home"><span>NL</span><strong>NatureLens<em>AI</em></strong></a>
+      <nav aria-label="เมนูหลัก">
+        <button class="nav-item active" data-view="map-view"><span>⌖</span><b data-th="สำรวจแผนที่" data-en="Explore Map">สำรวจแผนที่</b></button>
+        <button class="nav-item" data-view="compare-view"><span>⇄</span><b data-th="เปรียบเทียบ" data-en="Compare">เปรียบเทียบ</b></button>
+        <button class="nav-item" data-view="change-view"><span>◫</span><b data-th="การเปลี่ยนแปลง" data-en="Change">การเปลี่ยนแปลง</b></button>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="live-dot"></span><small data-th="ต้นแบบออนไลน์" data-en="Prototype online">ต้นแบบออนไลน์</small>
+        <button id="language-toggle" aria-label="Change language">TH / EN</button>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="mobile-menu" aria-label="เปิดเมนู">☰</button>
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="area-search" list="area-options" placeholder="ค้นหาจังหวัดหรือพื้นที่..." aria-label="ค้นหาพื้นที่">
+          <datalist id="area-options"><option value="เชียงใหม่"><option value="นครนายก"><option value="กระบี่"></datalist>
+        </div>
+        <div class="top-actions"><span class="data-state">● ข้อมูลจำลอง</span><button id="export-button">⇩ Export report</button></div>
+      </header>
+
+      <main>
+        <section id="map-view" class="view active-view">
+          <div class="map-panel">
+            <div class="map-heading">
+              <div><p class="kicker">THAILAND ENVIRONMENTAL EXPLORER</p><h1 data-th="สำรวจภาพรวมธรรมชาติ" data-en="Explore nature insights">สำรวจภาพรวมธรรมชาติ</h1></div>
+              <span id="map-status">เลือกพื้นที่บนแผนที่</span>
+            </div>
+            <div class="map-stage">
+              <div class="map-canvas">
+              <img src="assets/thailand-nature-map.webp" alt="ภาพประกอบระบบนิเวศประเทศไทย">
+              <div id="layer-forest" class="layer-overlay forest-layer"></div>
+              <div id="layer-protected" class="layer-overlay protected-layer"></div>
+              <div id="layer-biodiversity" class="layer-overlay biodiversity-layer"></div>
+              <div id="layer-roads" class="layer-overlay roads-layer"></div>
+              <div id="layer-change" class="layer-overlay change-layer"></div>
+              <button class="map-marker north" data-area="chiang-mai"><i></i><span>เชียงใหม่</span></button>
+              <button class="map-marker central" data-area="nakhon-nayok"><i></i><span>นครนายก</span></button>
+              <button class="map-marker south" data-area="krabi"><i></i><span>กระบี่</span></button>
+              <div class="map-legend"><span><i class="green"></i> Nature opportunity</span><span><i class="amber"></i> Human pressure</span></div>
+              </div>
+            </div>
+            <div class="map-disclaimer">ภาพประกอบและค่าทั้งหมดเป็นข้อมูลจำลอง ไม่ใช่ขอบเขตหรือผลวิเคราะห์ทางราชการ</div>
+          </div>
+
+          <aside class="layers-panel">
+            <p class="kicker">MAP LAYERS</p><h2 data-th="ชั้นข้อมูล" data-en="Data layers">ชั้นข้อมูล</h2>
+            <div class="layer-list">
+              <label><span><i class="swatch forest"></i>Forest cover</span><input type="checkbox" data-layer="forest" checked></label>
+              <label><span><i class="swatch protected"></i>Protected areas</span><input type="checkbox" data-layer="protected"></label>
+              <label><span><i class="swatch biodiversity"></i>Biodiversity records</span><input type="checkbox" data-layer="biodiversity"></label>
+              <label><span><i class="swatch roads"></i>Roads & settlements</span><input type="checkbox" data-layer="roads"></label>
+              <label><span><i class="swatch change"></i>Change detection</span><input type="checkbox" data-layer="change"></label>
+            </div>
+            <div class="selected-summary" id="selected-summary"><span>⌖</span><p data-th="เลือกหมุดเพื่อดู AI Insight" data-en="Select a marker for AI Insight">เลือกหมุดเพื่อดู AI Insight</p></div>
+          </aside>
+
+          <aside class="insight-panel" aria-live="polite">
+            <div id="insight-empty"><div class="ai-orb">AI</div><h2>AI Insight</h2><p>เลือกพื้นที่เพื่อดู Nature Profile และคำอธิบาย</p></div>
+            <div id="insight-content" hidden></div>
+          </aside>
+        </section>
+
+        <section id="compare-view" class="view">
+          <div class="page-heading"><p class="kicker">AREA COMPARISON</p><h1>เปรียบเทียบพื้นที่</h1><p>ดูตัวชี้วัดสำคัญแบบเคียงข้างกัน</p></div>
+          <div class="compare-controls"><select id="compare-a"></select><span>VS</span><select id="compare-b"></select></div>
+          <div id="comparison-cards" class="comparison-cards"></div>
+        </section>
+
+        <section id="change-view" class="view">
+          <div class="page-heading"><p class="kicker">CHANGE DETECTION</p><h1>การเปลี่ยนแปลงธรรมชาติ</h1><p>ภาพสาธิตเปรียบเทียบข้อมูลอดีตและปัจจุบัน</p></div>
+          <div class="change-card"><div class="before-after"><div class="before"><b>อดีต</b></div><div class="after"><b>ปัจจุบัน</b></div></div><div id="change-summary"><h2>เลือกพื้นที่จากหน้าแผนที่</h2><p>ระบบจะแสดงค่าการเปลี่ยนแปลงจำลองของพื้นที่ล่าสุดที่เลือก</p></div></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
