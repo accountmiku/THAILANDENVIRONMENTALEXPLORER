@@ -51,3 +51,5 @@ For multi-step tasks, use a short plan:
 ## Expected Outputs
 
 Krabi is selected on initial load. Selecting or searching for Chiang Mai, Nakhon Nayok, or Krabi updates AI Insight, Nature Profile, example species, the KPI strip, the three-year chart, and restoration guidance. The top-right clock shows the current date and Thailand time. Markers remain anchored to the same approximate provincial region across screen sizes. Layer toggles change the map overlay. Comparison shows two area profiles. Change detection uses the most recently selected area. Export produces a text report for the selected area.
+
+For GitHub Pages, the repository root must redirect to `src/`, and the generated deployment artifact must exclude `outputs/`.

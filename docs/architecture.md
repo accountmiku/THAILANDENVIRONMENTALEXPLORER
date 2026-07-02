@@ -27,3 +27,7 @@ No storage is used.
 ## External Libraries
 
 The interface loads the Prompt font from Google Fonts. Tahoma is the local fallback when the font service is unavailable. No JavaScript libraries are used.
+
+## GitHub Pages
+
+The repository root redirects visitors to the application in `src/`. Jekyll excludes `outputs/` from the Pages artifact so presentation files remain downloadable from the repository without being included in the deployed website.
